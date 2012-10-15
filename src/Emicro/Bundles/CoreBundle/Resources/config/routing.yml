@@ -1,3 +1,19 @@
 homepage:
-    pattern:  /
-    defaults: { _controller: EmicroCoreBundle:Default:index }
+  pattern:  /
+  defaults: { _controller: EmicroCoreBundle:Default:index }
+
+login:
+  pattern:  /login
+  defaults: { _controller: EmicroCoreBundle:Auth:login }
+
+logout:
+  pattern:  /logout
+  defaults: { _controller: EmicroCoreBundle:Auth:logout }
+
+app:
+  pattern:  /app
+  defaults: { _controller: EmicroCoreBundle:App:index }
+
+demo:
+  pattern:  /demo
+  defaults: { _controller: EmicroCoreBundle:Demo:index }

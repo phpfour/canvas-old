@@ -1,0 +1,28 @@
+{% extends 'EmicroCoreBundle::layout_public.html.twig' %}
+
+{% block content %}
+
+    <div class="row" style="margin-top: 100px; margin-bottom: 100px;">
+
+        <div class="span4 offset4 well">
+
+            <legend>Log into your Canvas!</legend>
+
+            <div class="alert alert-error hidden">
+                <a class="close" data-dismiss="alert" href="#">×</a>Incorrect Username or Password!
+            </div>
+
+            <form method="POST" action="" accept-charset="UTF-8">
+                <input type="text" id="email" class="span4" name="email" placeholder="Email address">
+                <input type="password" id="password" class="span4" name="password" placeholder="Password">
+                <label class="checkbox">
+                    <input type="checkbox" name="remember" value="1"> Remember Me
+                </label>
+                <button type="submit" name="submit" class="btn btn-info btn-block">Sign in</button>
+            </form>
+
+        </div>
+
+    </div>
+
+{% endblock %}

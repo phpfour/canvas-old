@@ -8,5 +8,5 @@ define('WEB_PATH', __DIR__);
 if (APPLICATION_ENV == 'dev') {
     require 'app_dev.php';
 } else {
-    require 'app.php';
+    require 'app_prod.php';
 }

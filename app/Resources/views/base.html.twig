@@ -50,7 +50,6 @@
         '../app/Resources/js/libs/backbone-min.js'
         '../app/Resources/js/libs/bootstrap.min.js'
         '../app/Resources/js/libs/json2.js'
-        '../app/Resources/js/libs/date.format.js'
         '../app/Resources/js/Templates.js'
         '../app/Resources/js/App.js'
         '../app/Resources/js/helpers/*'
@@ -66,7 +65,7 @@
         $(document).ready(function(){
 
             App.baseUrl = "{{ url('homepage') }}";
-            App.user = {{ user|raw }};
+            App.user = {{ userJson|raw }};
 
             App.initialize();
 
