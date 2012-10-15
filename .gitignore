@@ -1,9 +1,15 @@
-web/bundles/
 app/bootstrap.php.cache
 app/cache/*
 app/logs/*
 build/
 vendor
 composer.phar
+
 .idea
 .nbproject
+.DS_Store
+
+web/bundles/
+web/css/
+web/js/
+web/img/

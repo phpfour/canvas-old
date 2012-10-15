@@ -31,13 +31,7 @@
 
     <div class="container primary-container">
 
-        <div id="content" class="content">
-
-            <div class="row">
-                {% block content %}{% endblock %}
-            </div>
-
-        </div>
+        {% block content %}{% endblock %}
 
     </div>
     <!-- /container -->
@@ -51,28 +45,9 @@
         '../app/Resources/js/libs/bootstrap.min.js'
         '../app/Resources/js/libs/json2.js'
         '../app/Resources/js/libs/date.format.js'
-        '../app/Resources/js/Templates.js'
-        '../app/Resources/js/App.js'
-        '../app/Resources/js/helpers/*'
-        '../app/Resources/js/views/*'
-        '../app/Resources/js/models/*'
-        '../app/Resources/js/routers/*'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    <script type="text/javascript">
-
-        $(document).ready(function(){
-
-            App.baseUrl = "{{ url('homepage') }}";
-            App.user = {{ user|raw }};
-
-            App.initialize();
-
-        });
-
-    </script>
 
     {% block closure %}{% endblock %}
 

@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block header %}
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand home" href="#"><img src="/img/logo.png" alt="Loosemonkies"/></a>
+
+            <div class="follow_us pull-left">Follow Us&nbsp;
+                <a class="sicons" href="http://www.facebook.com/LooseMonkies"></a>
+                <a class="sicons twitter" href="http://twitter.com/loosemonkies"></a>
+                <a class="sicons lin" href="http://www.linkedin.com/company/loosemonkies"></a>
+            </div>
+
+            <ul id="main-menu" class="nav pull-right"></ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<section id="sidebar-left" class="span3">
+    {% block sidebar_left %}{% endblock %}
+</section>
+
+<section id="main" class="span6">
+    {% block main %}{% endblock %}
+</section>
+
+<section id="sidebar-right" class="span3">
+
+    <div class="widget-holder">
+        {% block sidebar_right %}{% endblock %}
+    </div>
+
+    <div class="clearfix"></div>
+
+</section>
+
+<div class="clearfix"></div>
+
+{% endblock %}
