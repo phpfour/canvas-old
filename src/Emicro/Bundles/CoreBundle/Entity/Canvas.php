@@ -23,6 +23,12 @@ class Canvas
      */
     protected $project;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="canvases")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    protected $user;
+
     /** @ORM\Column(type="string", length=100, nullable=true) */
     protected $title;
 
@@ -222,5 +228,27 @@ class Canvas
     public function getDetails()
     {
         return $this->details;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Emicro\Bundles\CoreBundle\Entity\User $user
+     * @return Canvas
+     */
+    public function setUser(\Emicro\Bundles\CoreBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Emicro\Bundles\CoreBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

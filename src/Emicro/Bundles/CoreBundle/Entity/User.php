@@ -65,6 +65,18 @@ class User
     /** @ORM\OneToMany(targetEntity="Project", mappedBy="user") **/
     protected $projects;
 
+    /** @ORM\OneToMany(targetEntity="Canvas", mappedBy="user") **/
+    protected $canvases;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->canvases = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     public function toArray()
     {
         $data = array(
@@ -417,44 +429,68 @@ class User
     {
         return $this->updateDate;
     }
+
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add projects
+     * Add project
      *
-     * @param Emicro\Bundles\CoreBundle\Entity\Project $projects
+     * @param \Emicro\Bundles\CoreBundle\Entity\Project $project
      * @return User
      */
-    public function addProject(\Emicro\Bundles\CoreBundle\Entity\Project $projects)
+    public function addProject(\Emicro\Bundles\CoreBundle\Entity\Project $project)
     {
-        $this->projects[] = $projects;
-    
+        $this->projects[] = $project;
         return $this;
     }
 
     /**
-     * Remove projects
+     * Remove project
      *
-     * @param Emicro\Bundles\CoreBundle\Entity\Project $projects
+     * @param \Emicro\Bundles\CoreBundle\Entity\Project $project
      */
-    public function removeProject(\Emicro\Bundles\CoreBundle\Entity\Project $projects)
+    public function removeProject(\Emicro\Bundles\CoreBundle\Entity\Project $project)
     {
-        $this->projects->removeElement($projects);
+        $this->projects->removeElement($project);
     }
 
     /**
      * Get projects
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProjects()
     {
         return $this->projects;
+    }
+
+    /**
+     * Add canvas
+     *
+     * @param \Emicro\Bundles\CoreBundle\Entity\Canvas $canvas
+     * @return User
+     */
+    public function addCanvas(\Emicro\Bundles\CoreBundle\Entity\Canvas $canvas)
+    {
+        $this->canvases[] = $canvas;
+        return $this;
+    }
+
+    /**
+     * Remove canvas
+     *
+     * @param \Emicro\Bundles\CoreBundle\Entity\Canvas $canvas
+     */
+    public function removeCanvas(\Emicro\Bundles\CoreBundle\Entity\Canvas $canvas)
+    {
+        $this->canvases->removeElement($canvas);
+    }
+
+    /**
+     * Get canvases
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCanvases()
+    {
+        return $this->canvases;
     }
 }

@@ -3,14 +3,55 @@
 namespace Emicro\Bundles\CoreBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Emicro\Bundles\CoreBundle\Entity\User;
 use Emicro\Bundles\CoreBundle\Entity\Canvas;
 use Emicro\Bundles\CoreBundle\Entity\Project;
 
 class CanvasRepository extends EntityRepository
 {
+    /** @var User */
+    protected $user;
+
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    public function getByUser($userId)
+    {
+        $query = $this->_em->createQuery('SELECT c FROM Emicro\Bundles\CoreBundle\Entity\Canvas c JOIN c.user u WHERE u.id = ' . $userId);
+        $results = $query->getResult();
+
+        $canvases = array();
+
+        if ($results) {
+            foreach ($results as $canvas) {
+                $canvases[] = $canvas;
+            }
+        }
+
+        return $canvases;
+    }
+
     public function insert($data)
     {
         $canvas = $this->map($data);
+
+        $this->_em->persist($canvas);
+        $this->_em->flush();
+
+        return $canvas;
+    }
+
+    public function update($data, $id)
+    {
+        $canvas = $this->find($id);
+
+        if (is_null($canvas)) {
+            return false;
+        }
+
+        $canvas = $this->map($data, $canvas);
 
         $this->_em->persist($canvas);
         $this->_em->flush();
@@ -24,10 +65,10 @@ class CanvasRepository extends EntityRepository
             $canvas = new Canvas();
         }
 
-        $fields = array('title', 'image', 'markers');
+        $fields = array('title', 'image', 'markers', 'details');
 
         foreach ($fields as $field) {
-            if (isset($data[$field])) {
+            if (isset($data[$field]) && !empty($data[$field])) {
                 $canvas->{"set{$field}"}($data[$field]);
             }
         }
