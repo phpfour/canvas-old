@@ -5,8 +5,9 @@ var CanvasListView = Backbone.View.extend({
     initialize: function() {
         this.render();
 
+        var self = this;
         this.collection.on("add", function(canvas) {
-            this.render();
+            self.render();
         });
     },
 

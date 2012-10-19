@@ -117,6 +117,8 @@ body {
 }
 .canvas-thumb {
     width: 160px !important;
+    height: 150px;
     font-weight: bold;
     color: #a0522d;
+    margin: 10px 20px 10px 0 !important;
 }
