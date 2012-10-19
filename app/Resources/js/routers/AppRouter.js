@@ -15,17 +15,14 @@ var AppRouter = Backbone.Router.extend({
         }
 
         if(App.canvasList != 'undefined') {
-            App.orphanCanvasList.add([
-              {id: 1, title: "Flying Dutchman", image: 'batman.jpg', description: "A very Looong desctiption. A very Looong desctiption."},
-              {id: 2, title: "Black Pearl", image: 'batman.jpg', description: "Short description."}
-            ]);
-            App.canvasList = new CanvasListView();
+            App.orphanCanvasList.add(myCanvasList);
+            App.canvasList = new CanvasListView({collection: App.orphanCanvasList});
         }
     },
 
     home: function() {
-        App.canvasList.render();
         App.hideSidebar();
+        App.canvasList.render();
     },
 
     showCanvas: function(canvasId) {

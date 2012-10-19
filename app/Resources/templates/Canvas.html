@@ -1,2 +1,3 @@
-<h3><%= title %></h3>
+<h3><%= title %> <a class="btn btn-small pull-right" href="#"><i class="icon-arrow-left"></i> Back</a></h3>
 <div id="canvas" class="canvas" style="background-image: url(<%= App.baseUrl + App.IMG_ROOT + image %>);"></div>
+<p><% if(!_.isNull(obj.details)) print(obj.details) %></p>

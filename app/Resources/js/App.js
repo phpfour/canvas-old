@@ -42,34 +42,9 @@ App.bindGlobalEvents = function() {
         App.addCanvas();
     });
 
-    $('#canvas').click(function(e){
-
-        //If clicked on existing marker, return
-        if($(e.target).attr('id') != 'canvas') return;
-
-        var offset = $(e.target).position();
-
-        var x = e.pageX - (offset.left + 35); // 40 = 30 for adjustment + 10 for to make center
-        var y = e.pageY - (offset.top + 40);
-
-        App.log(offset);
-        App.log(e.pageX +', '+ e.pageY);
-
-        var newMarker = document.createElement('div');
-        var id = Math.round(100 * Math.random());
-
-        $(newMarker).addClass('marker marker1')
-                    .attr('id', 'clickover-'+ x +'-'+ y)
-                    .attr('rel', 'clickover')
-                    //.html(id)
-                    .css({top: y + 'px', left: x + 'px'});
-
-        $(e.target).append(newMarker);
-    });
-
     $('.marker').live('click', function(e){
-        e.stopPropagation();
-        alert('Edit Marker info');
+
+        $('#markerOptions').html();
     });
 
     $("#addCanvas").find('.btn-primary').click(function(){
@@ -88,7 +63,9 @@ App.bindGlobalEvents = function() {
             processData: false,
             contentType: false,
             success: function (res) {
-                console.log(res);
+                $('#addCanvas').modal('hide')
+                App.orphanCanvasList.add(res);
+                App.canvasList.render();
             }
         });
 
