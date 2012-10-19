@@ -31,6 +31,7 @@ class ProjectController extends Controller
 
         $response->setStatusCode(200);
         $response->setContent($serializer->serialize($newProject));
+        $response->headers->set('Content-type', 'application/json');
 
         return $response;
     }
