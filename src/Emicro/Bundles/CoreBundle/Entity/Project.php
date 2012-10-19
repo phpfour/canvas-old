@@ -49,9 +49,10 @@ class Project
     public function toArray()
     {
         $data = array(
-            'title' => $this->getTitle(),
+            'id'      => $this->getId(),
+            'title'   => $this->getTitle(),
             'details' => $this->getDetails(),
-            'user' => $this->getUser()->toArray()
+            'user'    => $this->getUser()->toArray()
         );
 
         return $data;
