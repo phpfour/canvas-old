@@ -13,6 +13,7 @@ class CanvasController extends Controller
     public function createAction()
     {
         $response = new Response();
+        $response->headers->set('Content-type', 'application/json');
 
         if ($this->get('session')->get('user') === null) {
             $response->setStatusCode(401);
