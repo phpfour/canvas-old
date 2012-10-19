@@ -1,5 +1,9 @@
 var App = {
 
+    appRouter: null,
+    formData: new FormData(),
+    currentProject: null,
+
     init: function() {
 
         App.adjustStyle();
@@ -8,8 +12,6 @@ var App = {
         this.appRouter = new AppRouter();
         Backbone.history.start();
     },
-
-
 
     addProject: function() {
         $('#addProject').modal();
@@ -28,6 +30,7 @@ App.adjustStyle = function() {
 }
 
 App.bindGlobalEvents = function() {
+
     $('[rel=tooltip]').tooltip();
 
     $('#add-project').click(function(){
@@ -39,6 +42,7 @@ App.bindGlobalEvents = function() {
     });
 
     $('#canvas').click(function(e){
+
         //If clicked on existing marker, return
         if($(e.target).attr('id') != 'canvas') return;
 
@@ -65,6 +69,42 @@ App.bindGlobalEvents = function() {
     $('.marker').live('click', function(e){
         e.stopPropagation();
         alert('Edit Marker info');
+    });
+
+    $("#addCanvas").find('.btn-primary').click(function(){
+
+        App.formData.append('title', $("#addCanvas").find('input[name=title]').val());
+        App.formData.append('details', $("#addCanvas").find('textarea[name=details]').val());
+
+        if (App.currentProject) {
+            App.formData.append('project_id', App.currentProject.id);
+        }
+
+        $.ajax({
+            url: "/canvases",
+            type: "POST",
+            data: App.formData,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                console.log(res);
+            }
+        });
+
+    });
+
+    $("#addCanvas").find("input[type=file]").change(function(){
+
+        var file = this.files[0];
+
+        if (file.type.match(/image.*/)) {
+            if (window.FileReader) {
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+            }
+            App.formData.append("image", file);
+        }
+
     });
 }
 

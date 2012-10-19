@@ -417,4 +417,44 @@ class User
     {
         return $this->updateDate;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add projects
+     *
+     * @param Emicro\Bundles\CoreBundle\Entity\Project $projects
+     * @return User
+     */
+    public function addProject(\Emicro\Bundles\CoreBundle\Entity\Project $projects)
+    {
+        $this->projects[] = $projects;
+    
+        return $this;
+    }
+
+    /**
+     * Remove projects
+     *
+     * @param Emicro\Bundles\CoreBundle\Entity\Project $projects
+     */
+    public function removeProject(\Emicro\Bundles\CoreBundle\Entity\Project $projects)
+    {
+        $this->projects->removeElement($projects);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
 }

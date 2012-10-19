@@ -32,8 +32,10 @@ class CanvasRepository extends EntityRepository
             }
         }
 
-        $projectRepo = $this->getEntityManager()->getRepository('Emicro\Bundles\CoreBundle\Entity\Project');
-        $canvas->setProject($projectRepo->find($data['project_id']));
+        if (isset($data['project_id'])) {
+            $projectRepo = $this->getEntityManager()->getRepository('Emicro\Bundles\CoreBundle\Entity\Project');
+            $canvas->setProject($projectRepo->find($data['project_id']));
+        }
 
         return $canvas;
     }

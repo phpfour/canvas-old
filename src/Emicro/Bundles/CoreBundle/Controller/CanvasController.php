@@ -19,7 +19,7 @@ class CanvasController extends Controller
             return $response;
         }
 
-        $data = json_decode($this->getRequest()->getContent(), true);
+        $data = $this->getRequest()->request->all();
         $data['image'] = $this->handleUpload();
 
         $canvasRepo = $this->getDoctrine()->getRepository('Emicro\Bundles\CoreBundle\Entity\Canvas');
