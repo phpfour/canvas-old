@@ -67,11 +67,12 @@
 
     <script type="text/javascript">
 
+        var myCanvasList = {{ canvases|raw }};
+
         $(document).ready(function(){
 
             App.baseUrl = "{{ url('homepage') }}";
             App.user = {{ userJson|raw }};
-
             App.init();
 
         });

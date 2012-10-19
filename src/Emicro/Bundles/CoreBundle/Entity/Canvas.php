@@ -17,8 +17,23 @@ class Canvas
      */
     protected $id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="canvases")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     */
+    protected $project;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="canvases")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    protected $user;
+
     /** @ORM\Column(type="string", length=100, nullable=true) */
     protected $title;
+
+    /** @ORM\Column(type="text", nullable=true) */
+    protected $details;
 
     /** @ORM\Column(type="string", length=250, nullable=true) */
     protected $image;
@@ -26,17 +41,30 @@ class Canvas
     /** @ORM\Column(type="array", nullable=true) */
     protected $markers;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="canvases")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
-     */
-    protected $project;
-
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column(type="datetime", nullable=true) */
     protected $createDate;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column(type="datetime", nullable=true) */
     protected $updateDate;
+
+    public function toArray()
+    {
+        $data = array(
+            'id'      => $this->getId(),
+            'title'   => $this->getTitle(),
+            'image'   => $this->getImage(),
+            'details' => $this->getDetails(),
+            'markers' => $this->getMarkers()
+        );
+
+        if (!is_null($this->getProject())) {
+            $data['project'] = $this->getProject()->toArray();
+        } else {
+            $data['project'] = null;
+        }
+
+        return $data;
+    }
 
     /**
      * Get id
@@ -178,5 +206,49 @@ class Canvas
     public function getMarkers()
     {
         return $this->markers;
+    }
+
+    /**
+     * Set details
+     *
+     * @param string $details
+     * @return Canvas
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+        return $this;
+    }
+
+    /**
+     * Get details
+     *
+     * @return string 
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Emicro\Bundles\CoreBundle\Entity\User $user
+     * @return Canvas
+     */
+    public function setUser(\Emicro\Bundles\CoreBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Emicro\Bundles\CoreBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

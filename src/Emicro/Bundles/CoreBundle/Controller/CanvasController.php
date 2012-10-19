@@ -12,24 +12,29 @@ class CanvasController extends Controller
 {
     public function createAction()
     {
+        $response = new Response();
+
         if ($this->get('session')->get('user') === null) {
-            $response = new Response();
             $response->setStatusCode(401);
             $response->setContent(json_encode(array('response' => Response::$statusTexts[401])));
             return $response;
         }
 
-        $data = json_decode($this->getRequest()->getContent(), true);
+        $data = $this->getRequest()->request->all();
         $data['image'] = $this->handleUpload();
 
         $canvasRepo = $this->getDoctrine()->getRepository('Emicro\Bundles\CoreBundle\Entity\Canvas');
-        $newCanvas = $canvasRepo->insert($data);
+
+        if (isset($data['id'])) {
+            $canvas = $canvasRepo->update($data, $data['id']);
+            $response->setStatusCode(200);
+        } else {
+            $canvas = $canvasRepo->insert($data);
+            $response->setStatusCode(201);
+        }
 
         $serializer = new JsonSerializer();
-        $response = new Response();
-
-        $response->setStatusCode(200);
-        $response->setContent($serializer->serialize($newCanvas));
+        $response->setContent($serializer->serialize($canvas));
 
         return $response;
     }
@@ -42,12 +47,16 @@ class CanvasController extends Controller
             mkdir($uploadDir, 0777);
         }
 
+        if (empty($_FILES)) {
+            return false;
+        }
+
         $uploadedFile = $uploadDir . basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile);
 
         $imageResizer = new ImageResizer($uploadedFile);
         $imageResizer->maxWidth(300)->resize();
 
-        return '/uploads/' . basename($_FILES['image']['name']);
+        return basename($_FILES['image']['name']);
     }
 }
