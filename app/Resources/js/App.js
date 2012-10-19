@@ -22,6 +22,7 @@ var App = {
 };
 
 App.HEADER_HEIGHT = 40;
+App.IMG_ROOT      = 'uploads/';
 
 App.adjustStyle = function() {
     $('#content').css('height', $(window).height() - App.HEADER_HEIGHT + 'px'); // 41 is navbar height
@@ -67,6 +68,16 @@ App.bindGlobalEvents = function() {
         alert('Edit Marker info');
     });
 }
+
+App.showSidebar = function(){
+    $('#sidebar-right').show();
+    $('#main').animate({width: '45%'});
+}
+
+App.hideSidebar = function(){
+    $('#main').animate({width: '65%'}, {complete: function(){$('#sidebar-right').hide();}});
+}
+
 
 App.log = function(objectToLog) {
     if(typeof console != 'undefined' && typeof console.log == 'function') {
