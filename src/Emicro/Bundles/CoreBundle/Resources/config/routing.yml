@@ -17,3 +17,11 @@ app:
 demo:
   pattern:  /demo
   defaults: { _controller: EmicroCoreBundle:Demo:index }
+
+project_create:
+  pattern:  /projects
+  defaults: { _controller: EmicroCoreBundle:Project:create }
+  requirements:
+    _method: POST
+
+
