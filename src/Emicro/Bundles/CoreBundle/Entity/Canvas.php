@@ -20,6 +20,12 @@ class Canvas
     /** @ORM\Column(type="string", length=100, nullable=true) */
     protected $title;
 
+    /** @ORM\Column(type="string", length=250, nullable=true) */
+    protected $image;
+
+    /** @ORM\Column(type="array", nullable=true) */
+    protected $markers;
+
     /**
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="canvases")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
@@ -128,5 +134,49 @@ class Canvas
     public function getProject()
     {
         return $this->project;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Canvas
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set markers
+     *
+     * @param array $markers
+     * @return Canvas
+     */
+    public function setMarkers($markers)
+    {
+        $this->markers = $markers;
+        return $this;
+    }
+
+    /**
+     * Get markers
+     *
+     * @return array 
+     */
+    public function getMarkers()
+    {
+        return $this->markers;
     }
 }

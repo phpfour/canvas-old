@@ -10,7 +10,7 @@ class ProjectController extends Controller
 {
     public function createAction()
     {
-        if($this->get('session')->get('user') === null) {
+        if ($this->get('session')->get('user') === null) {
             $response = new Response();
             $response->setStatusCode(401);
             $response->setContent(json_encode(array('response' => Response::$statusTexts[401])));
@@ -27,8 +27,8 @@ class ProjectController extends Controller
         $newProject = $projectRepo->insert($data);
 
         $serializer = new JsonSerializer();
-
         $response = new Response();
+
         $response->setStatusCode(200);
         $response->setContent($serializer->serialize($newProject));
 

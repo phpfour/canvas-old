@@ -62,6 +62,9 @@ class User
     /** @ORM\Column(type="datetime") */
     protected $updateDate;
 
+    /** @ORM\OneToMany(targetEntity="Project", mappedBy="user") **/
+    protected $projects;
+
     public function toArray()
     {
         $data = array(

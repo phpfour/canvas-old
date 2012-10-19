@@ -8,6 +8,7 @@ use Emicro\Bundles\CoreBundle\Entity\Project;
 
 class ProjectRepository extends EntityRepository
 {
+    /** @var User */
     protected $user;
 
     public function setUser($user)
