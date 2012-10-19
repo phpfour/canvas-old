@@ -53,14 +53,19 @@ class Canvas
             'id'      => $this->getId(),
             'title'   => $this->getTitle(),
             'image'   => $this->getImage(),
-            'details' => $this->getDetails(),
-            'markers' => $this->getMarkers()
+            'details' => $this->getDetails()
         );
 
         if (!is_null($this->getProject())) {
             $data['project'] = $this->getProject()->toArray();
         } else {
             $data['project'] = null;
+        }
+
+        if (!is_null($this->getMarkers())) {
+            $data['markers'] = $this->getMarkers();
+        } else {
+            $data['markers'] = array();
         }
 
         return $data;

@@ -19,7 +19,13 @@ class CanvasRepository extends EntityRepository
 
     public function getByUser($userId)
     {
-        $query = $this->_em->createQuery('SELECT c FROM Emicro\Bundles\CoreBundle\Entity\Canvas c JOIN c.user u WHERE u.id = ' . $userId);
+        $dql = 'SELECT c
+                FROM Emicro\Bundles\CoreBundle\Entity\Canvas c
+                JOIN c.user u
+                WHERE c.project IS NULL
+                AND u.id = ' . $userId;
+
+        $query = $this->_em->createQuery($dql);
         $results = $query->getResult();
 
         $canvases = array();
@@ -77,6 +83,8 @@ class CanvasRepository extends EntityRepository
             $projectRepo = $this->getEntityManager()->getRepository('Emicro\Bundles\CoreBundle\Entity\Project');
             $canvas->setProject($projectRepo->find($data['project_id']));
         }
+
+        $canvas->setUser($this->user);
 
         return $canvas;
     }

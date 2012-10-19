@@ -23,7 +23,11 @@ class CanvasController extends Controller
         $data = $this->getRequest()->request->all();
         $data['image'] = $this->handleUpload();
 
+        $userRepo = $this->getDoctrine()->getRepository('Emicro\Bundles\CoreBundle\Entity\User');
         $canvasRepo = $this->getDoctrine()->getRepository('Emicro\Bundles\CoreBundle\Entity\Canvas');
+
+        $user = $this->get('session')->get('user');
+        $canvasRepo->setUser($userRepo->find($user->getId()));
 
         if (isset($data['id'])) {
             $canvas = $canvasRepo->update($data, $data['id']);
@@ -51,12 +55,22 @@ class CanvasController extends Controller
             return false;
         }
 
-        $uploadedFile = $uploadDir . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile);
+        $newFilename = time() . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 
-        $imageResizer = new ImageResizer($uploadedFile);
-        $imageResizer->maxWidth(300)->resize();
+        $originalFile = $uploadDir . $newFilename;
+        $canvasFile = $uploadDir . 'canvas_' . $newFilename;
+        $thumbFile = $uploadDir . 'thumb_' . $newFilename;
 
-        return basename($_FILES['image']['name']);
+        move_uploaded_file($_FILES['image']['tmp_name'], $originalFile);
+        copy($originalFile, $canvasFile);
+        copy($originalFile, $thumbFile);
+
+        $imageResizer = new ImageResizer($canvasFile);
+        $imageResizer->maxWidth(700)->resize();
+
+        $imageResizer = new ImageResizer($thumbFile);
+        $imageResizer->maxWidth(160)->resize();
+
+        return $newFilename;
     }
 }
