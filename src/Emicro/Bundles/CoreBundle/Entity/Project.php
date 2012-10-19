@@ -17,16 +17,25 @@ class Project
      */
     protected $id;
 
+    /**
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    protected $user;
+
     /** @ORM\Column(type="string", length=100) */
     protected $title;
+
+    /** @ORM\Column(type="text") */
+    protected $details;
 
     /** @ORM\OneToMany(targetEntity="Canvas", mappedBy="project") */
     protected $canvases;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column(type="datetime", nullable=true) */
     protected $createDate;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column(type="datetime", nullable=true) */
     protected $updateDate;
 
     /**
@@ -35,6 +44,18 @@ class Project
     public function __construct()
     {
         $this->canvases = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function toArray()
+    {
+        $data = array(
+            'id'      => $this->getId(),
+            'title'   => $this->getTitle(),
+            'details' => $this->getDetails(),
+            'user'    => $this->getUser()->toArray()
+        );
+
+        return $data;
     }
     
     /**
@@ -143,5 +164,49 @@ class Project
     public function getCanvases()
     {
         return $this->canvases;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Emicro\Bundles\CoreBundle\Entity\User $user
+     * @return Project
+     */
+    public function setUser(\Emicro\Bundles\CoreBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Emicro\Bundles\CoreBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set details
+     *
+     * @param string $details
+     * @return Project
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+        return $this;
+    }
+
+    /**
+     * Get details
+     *
+     * @return string 
+     */
+    public function getDetails()
+    {
+        return $this->details;
     }
 }
