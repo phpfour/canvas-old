@@ -2,37 +2,74 @@ var App = {
 
     init: function() {
 
-        $('#addProjectAction').click(function(){
-            App.addProject();
-        });
+        App.adjustStyle();
+        App.bindGlobalEvents();
 
-        $('#canvas-img').click(function(e){
-
-            var offset = $(this).position();
-
-            var x = e.pageX - offset.left - 50;
-            var y = e.pageY - offset.top - 5;
-
-            console.log(x +', '+ y);
-
-            var newMarker = document.createElement('div');
-            var id = Math.round(100 * Math.random());
-
-            $(newMarker).addClass('marker').addClass('marker1')
-                        .attr('id', 'clickover' + id)
-                        .attr('rel', 'clickover')
-                        //.html(id)
-                        .css({top: y + 'px', left: x + 'px'});
-
-            $('#canvas-img').append(newMarker);
-
-            console.log(e.target);
-
-        });
+        this.appRouter = new AppRouter();
+        Backbone.history.start();
     },
+
+
 
     addProject: function() {
         $('#addProject').modal();
+    },
+
+    addCanvas: function() {
+        $('#addCanvas').modal();
     }
 
 };
+
+App.HEADER_HEIGHT = 40;
+
+App.adjustStyle = function() {
+    $('#content').css('height', $(window).height() - App.HEADER_HEIGHT + 'px'); // 41 is navbar height
+}
+
+App.bindGlobalEvents = function() {
+    $('[rel=tooltip]').tooltip();
+
+    $('#add-project').click(function(){
+        App.addProject();
+    });
+
+    $('#add-canvas').click(function(){
+        App.addCanvas();
+    });
+
+    $('#canvas').click(function(e){
+        //If clicked on existing marker, return
+        if($(e.target).attr('id') != 'canvas') return;
+
+        var offset = $(e.target).position();
+
+        var x = e.pageX - (offset.left + 35); // 40 = 30 for adjustment + 10 for to make center
+        var y = e.pageY - (offset.top + 40);
+
+        App.log(offset);
+        App.log(e.pageX +', '+ e.pageY);
+
+        var newMarker = document.createElement('div');
+        var id = Math.round(100 * Math.random());
+
+        $(newMarker).addClass('marker marker1')
+                    .attr('id', 'clickover-'+ x +'-'+ y)
+                    .attr('rel', 'clickover')
+                    //.html(id)
+                    .css({top: y + 'px', left: x + 'px'});
+
+        $(e.target).append(newMarker);
+    });
+
+    $('.marker').live('click', function(e){
+        e.stopPropagation();
+        alert('Edit Marker info');
+    });
+}
+
+App.log = function(objectToLog) {
+    if(typeof console != 'undefined' && typeof console.log == 'function') {
+        console.log(objectToLog);
+    }
+}
