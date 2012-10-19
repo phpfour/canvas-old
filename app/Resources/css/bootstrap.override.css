@@ -1,4 +1,9 @@
-body {
-    padding-top: 60px;
-    padding-bottom: 40px;
+.container-fluid {
+    padding: 0;
 }
+
+.navbar .container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+

@@ -9,7 +9,10 @@ composer.phar
 .nbproject
 .DS_Store
 
-web/bundles/
-web/css/
-web/js/
-web/img/
+web/bundles
+web/css
+web/js
+web/img
+web/uploads
+
+Templates.js

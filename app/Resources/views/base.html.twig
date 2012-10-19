@@ -12,9 +12,13 @@
         '../app/Resources/css/bootstrap-responsive.min.css'
         '../app/Resources/css/bootstrap.override.css'
         '../app/Resources/css/styles.css'
+        '../app/Resources/css/notebook.css'
+        '../app/Resources/css/themes.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
+
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -29,11 +33,11 @@
         {% block header %}{% endblock %}
     </header>
 
-    <div class="container primary-container">
+    <div class="container-fluid primary-container">
 
         <div id="content" class="content">
 
-            <div class="row">
+            <div class="row-fluid">
                 {% block content %}{% endblock %}
             </div>
 
@@ -67,7 +71,7 @@
             App.baseUrl = "{{ url('homepage') }}";
             App.user = {{ userJson|raw }};
 
-            App.initialize();
+            App.init();
 
         });
 

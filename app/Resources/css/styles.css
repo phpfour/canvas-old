@@ -1,0 +1,84 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background:#FFFFFF url(../img/bg-texture-crosshatch.png) repeat center top;
+}
+
+.left {
+    float: left;
+}
+
+.section-header {
+    margin-left: 45px;
+    margin-top: 25px;
+}
+
+.title {
+    font-family: 'Lato', sans-serif;
+}
+
+.title-action {
+    float: left;
+    padding-top: 25px;
+    padding-left: 20px;
+}
+
+.nb-item span {
+    font-family: 'Lato', sans-serif !important;
+    padding-top: 35px;
+}
+
+.marker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../img/sprite.png);
+    cursor: pointer;
+}
+
+.marker0 {
+    z-index: 12;
+    background-position: 0 -367px;
+}
+
+.marker1 {
+    z-index: 11;
+    background-position: 0 -390px;
+    width:20px;
+    height:20px;
+}
+
+.marker2 {
+    z-index: 10;
+    background-position: 0 -410px;
+    width:18px;
+    height:18px;
+}
+
+.marker3 {
+    z-index: 9;
+    background-position: 0 -428px;
+    width:16px;
+    height:16px;
+}
+
+.marker4 {
+    z-index: 8;
+    background-position: 0 -444px;
+    width:14px;
+    height:14px;
+}
+
+.marker5 {
+    z-index: 7;
+    background-position: 0 -458px;
+    width:13px;
+    height:13px;
+}
+
+.marker6 {
+    z-index: 6;
+    background-position: 0 -471px;
+    width:11px;
+    height:11px;
+}

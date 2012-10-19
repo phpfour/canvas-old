@@ -94,7 +94,6 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-    
         return $this;
     }
 
@@ -117,7 +116,6 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
-    
         return $this;
     }
 
@@ -140,7 +138,6 @@ class User
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-    
         return $this;
     }
 
@@ -163,7 +160,6 @@ class User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-    
         return $this;
     }
 
@@ -186,7 +182,6 @@ class User
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
-    
         return $this;
     }
 
@@ -209,7 +204,6 @@ class User
     public function setAuthToken($authToken)
     {
         $this->authToken = $authToken;
-    
         return $this;
     }
 
@@ -232,7 +226,6 @@ class User
     public function setSalt($salt)
     {
         $this->salt = $salt;
-    
         return $this;
     }
 
@@ -255,7 +248,6 @@ class User
     public function setConfirmationToken($confirmationToken)
     {
         $this->confirmationToken = $confirmationToken;
-    
         return $this;
     }
 
@@ -278,7 +270,6 @@ class User
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
-    
         return $this;
     }
 
@@ -301,7 +292,6 @@ class User
     public function setLocked($locked)
     {
         $this->locked = $locked;
-    
         return $this;
     }
 
@@ -324,7 +314,6 @@ class User
     public function setDeactivated($deactivated)
     {
         $this->deactivated = $deactivated;
-    
         return $this;
     }
 
@@ -347,7 +336,6 @@ class User
     public function setLastLogin($lastLogin)
     {
         $this->lastLogin = $lastLogin;
-    
         return $this;
     }
 
@@ -370,7 +358,6 @@ class User
     public function setPasswordRequestedAt($passwordRequestedAt)
     {
         $this->passwordRequestedAt = $passwordRequestedAt;
-    
         return $this;
     }
 
@@ -393,7 +380,6 @@ class User
     public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
-    
         return $this;
     }
 
@@ -416,7 +402,6 @@ class User
     public function setUpdateDate($updateDate)
     {
         $this->updateDate = $updateDate;
-    
         return $this;
     }
 
