@@ -4,14 +4,17 @@ var Canvas = Backbone.Model.extend({
 
      initialize: function() {
          if(this.attributes.markers.length > 0){
-             this.set('markerCollection', new MarkerCollection(this.attributes.markers))
+             this.set('markers', new MarkerCollection(this.attributes.markers))
          } else {
-             this.set('markerCollection', new MarkerCollection())
+             this.set('markers', new MarkerCollection())
          }
      },
 
-    urlRoot: function(){
-        return App.baseUrl + 'canvases'
+    urlRoot: function() { return App.baseUrl + 'canvases'},
+
+    sync: function(method, model, options) {
+        if (method === "update") method = "create";    // turns PUT into POST
+        return Backbone.sync(method, model, options);
     }
 
 });

@@ -50,10 +50,10 @@ App.bindGlobalEvents = function() {
         }
 
         var modelId = $(e.target).attr('id');
-        App.editingMarker = App.activeCanvas.get('markerCollection').get(modelId);
+        App.editingMarker = App.activeCanvas.get('markers').get(modelId);
         App.editingMarkerView = new MarkerView({model:App.editingMarker});
         $('#'+modelId).addClass('marker3');
-        //App.activeCanvas.get('markerCollection').add(App.editingMarker);
+        //App.activeCanvas.get('markers').add(App.editingMarker);
     });
 
     $("#addCanvas").find('.btn-primary').click(function(){
