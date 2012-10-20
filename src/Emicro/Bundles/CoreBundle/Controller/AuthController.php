@@ -23,7 +23,24 @@ class AuthController extends Controller
             }
         }
 
-        return $this->render('EmicroCoreBundle:Auth:login.html.twig');
+        $flash = $this->get('session')->getFlashBag()->get('result');
+        return $this->render('EmicroCoreBundle:Auth:login.html.twig', array('flash' => $flash));
+    }
+
+    public function registerAction(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+
+            $data = $this->getRequest()->request->all();
+            $user = $this->getDoctrine()->getRepository('EmicroCoreBundle:User')->register($data);
+
+            if ($user !== false) {
+                $this->get('session')->getFlashBag()->set('result', 'Your signup is successful. Please login below.');
+                return $this->redirect('/login');
+            }
+        }
+
+        return $this->render('EmicroCoreBundle:Auth:register.html.twig');
     }
 
     public function logoutAction()

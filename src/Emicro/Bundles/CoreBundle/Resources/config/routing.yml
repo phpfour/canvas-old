@@ -6,6 +6,10 @@ login:
   pattern:  /login
   defaults: { _controller: EmicroCoreBundle:Auth:login }
 
+signup:
+  pattern:  /signup
+  defaults: { _controller: EmicroCoreBundle:Auth:register }
+
 logout:
   pattern:  /logout
   defaults: { _controller: EmicroCoreBundle:Auth:logout }
