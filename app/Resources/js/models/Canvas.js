@@ -10,8 +10,11 @@ var Canvas = Backbone.Model.extend({
          }
      },
 
-    urlRoot: function(){
-        return App.baseUrl + 'canvases'
+    urlRoot: function() { return App.baseUrl + 'canvases'},
+
+    sync: function(method, model, options) {
+        if (method === "update") method = "create";    // turns PUT into POST
+        return Backbone.sync(method, model, options);
     }
 
 });
