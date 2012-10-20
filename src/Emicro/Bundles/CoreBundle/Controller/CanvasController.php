@@ -22,7 +22,7 @@ class CanvasController extends Controller
         }
 
         $data = $this->getRequest()->request->all();
-        $data['image'] = $this->handleUpload();
+        $this->handleUpload($data);
 
         $userRepo = $this->getDoctrine()->getRepository('Emicro\Bundles\CoreBundle\Entity\User');
         $canvasRepo = $this->getDoctrine()->getRepository('Emicro\Bundles\CoreBundle\Entity\Canvas');
@@ -44,7 +44,7 @@ class CanvasController extends Controller
         return $response;
     }
 
-    private function handleUpload()
+    private function handleUpload(&$data)
     {
         $uploadDir = './uploads/';
 
@@ -72,6 +72,10 @@ class CanvasController extends Controller
         $imageResizer = new ImageResizer($thumbFile);
         $imageResizer->maxWidth(160)->resize();
 
-        return $newFilename;
+        $canvasDimensions = getimagesize($canvasFile);
+
+        $data['image'] = $newFilename;
+        $data['canvasWidth'] = $canvasDimensions[0];
+        $data['canvasHeight'] = $canvasDimensions[1];
     }
 }

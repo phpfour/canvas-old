@@ -38,6 +38,12 @@ class Canvas
     /** @ORM\Column(type="string", length=250, nullable=true) */
     protected $image;
 
+    /** @ORM\Column(type="integer", nullable=true) */
+    protected $canvasHeight;
+
+    /** @ORM\Column(type="integer", nullable=true) */
+    protected $canvasWidth;
+
     /** @ORM\Column(type="array", nullable=true) */
     protected $markers;
 
@@ -50,10 +56,12 @@ class Canvas
     public function toArray()
     {
         $data = array(
-            'id'      => $this->getId(),
-            'title'   => $this->getTitle(),
-            'image'   => $this->getImage(),
-            'details' => $this->getDetails()
+            'id'            => $this->getId(),
+            'title'         => $this->getTitle(),
+            'image'         => $this->getImage(),
+            'details'       => $this->getDetails(),
+            'canvasHeight'  => $this->getCanvasHeight(),
+            'canvasWidth'   => $this->getCanvasWidth()
         );
 
         if (!is_null($this->getProject())) {
@@ -255,5 +263,27 @@ class Canvas
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function setCanvasHeight($canvasHeight)
+    {
+        $this->canvasHeight = $canvasHeight;
+        return $this;
+    }
+
+    public function getCanvasHeight()
+    {
+        return $this->canvasHeight;
+    }
+
+    public function setCanvasWidth($canvasWidth)
+    {
+        $this->canvasWidth = $canvasWidth;
+        return $this;
+    }
+
+    public function getCanvasWidth()
+    {
+        return $this->canvasWidth;
     }
 }
