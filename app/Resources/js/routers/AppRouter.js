@@ -29,7 +29,7 @@ var AppRouter = Backbone.Router.extend({
         App.activeCanvas = App.orphanCanvasList.get(canvasId);
         new CanvasView({model: App.activeCanvas});
 
-        App.showSidebar();
+        App.showSidebar(App.activeCanvas);
     },
 
     logOut: function() {

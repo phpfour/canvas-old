@@ -6,6 +6,8 @@ var App = {
 
     init: function() {
 
+        this.editingMarker = null;
+
         App.adjustStyle();
         App.bindGlobalEvents();
 
@@ -43,8 +45,15 @@ App.bindGlobalEvents = function() {
     });
 
     $('.marker').live('click', function(e){
+        if(App.editingMarker != null){
+            App.editingMarkerView.close();
+        }
 
-        $('#markerOptions').html();
+        var modelId = $(e.target).attr('id');
+        App.editingMarker = App.activeCanvas.get('markerCollection').get(modelId);
+        App.editingMarkerView = new MarkerView({model:App.editingMarker});
+        $('#'+modelId).addClass('marker3');
+        //App.activeCanvas.get('markerCollection').add(App.editingMarker);
     });
 
     $("#addCanvas").find('.btn-primary').click(function(){
@@ -86,7 +95,11 @@ App.bindGlobalEvents = function() {
     });
 }
 
-App.showSidebar = function(){
+App.showSidebar = function(canvas){
+App.log(canvas);
+    $('#canvas-info').find('h4').text(canvas.get('title')).end()
+                     .find('p').text(canvas.get('details'));
+
     $('#sidebar-right').show();
     $('#main').animate({width: '45%'});
 }

@@ -28,15 +28,21 @@ var CanvasView = Backbone.View.extend({
         App.log(e.pageX +', '+ e.pageY);
 
         var newMarker = document.createElement('div');
-        var id = Math.round(100 * Math.random());
+        var id = 'clickover-'+ x +'-'+ y;
 
         $(newMarker).addClass('marker marker1')
-                    .attr('id', 'clickover-'+ x +'-'+ y)
+                    .attr('id', id)
                     .attr('rel', 'clickover')
-                    //.html(id)
                     .css({top: y + 'px', left: x + 'px'});
 
         $(e.target).append(newMarker);
+        App.activeCanvas.get('markerCollection').add(new Marker({
+            'id': id,
+            'x': x,
+            'y': y,
+            'type': $('.create-marker.active').eq(0).data('marker-type'),
+            'canvasId': App.activeCanvas.id
+        }));
     }
 
 });

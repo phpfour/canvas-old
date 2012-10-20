@@ -1,0 +1,26 @@
+<div class="marker-info well">
+    <h5 class="light-header">
+        Marker Information
+        <button type="button" class="close">&times;</button>
+    </h5>
+    <form>
+      <div class="control-group">
+          <div class="controls">
+              <input type="text" id="marker-name" placeholder="Name">
+              <select id="marker-type" name="marker-type">
+                  <option <% if(obj.type == 'text') print('selected="selected"') %>>Text</option>
+                  <option <% if(obj.type == 'image') print('selected="selected"') %>>Image</option>
+                  <option <% if(obj.type == 'video') print('selected="selected"') %>>Video</option>
+              </select>
+              <textarea rows="3" placeholder="Content"></textarea>
+          </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <button type="button" class="btn btn-danger delete-marker">Delete</button>
+          <button type="button" class="btn btn-primary update-marker">Update</button>
+        </div>
+      </div>
+    </form>
+
+</div>
