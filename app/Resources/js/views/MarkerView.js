@@ -19,11 +19,16 @@ var MarkerView = Backbone.View.extend({
     },
 
     updateMarker: function(e) {
-        App.log('Updating Marker');
+        App.editingMarker.set({
+            'name': $('#marker-name').val(),
+            'type': $('#marker-type').val(),
+            'content': $('#marker-content').val()
+        });
+        App.activeCanvas.save();
     },
 
     deleteMarker: function(e) {
-        App.log('Deleting Marker');
+        App.activeCanvas.save();
     },
 
     close: function(){
