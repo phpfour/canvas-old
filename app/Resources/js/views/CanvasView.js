@@ -36,7 +36,7 @@ var CanvasView = Backbone.View.extend({
                     .css({top: y + 'px', left: x + 'px'});
 
         $(e.target).append(newMarker);
-        App.activeCanvas.get('markerCollection').add(new Marker({
+        App.activeCanvas.get('markers').add(new Marker({
             'id': id,
             'x': x,
             'y': y,
