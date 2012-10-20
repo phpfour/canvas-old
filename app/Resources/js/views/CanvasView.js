@@ -40,6 +40,7 @@ var CanvasView = Backbone.View.extend({
             'id': id,
             'x': x,
             'y': y,
+            'type': $('.create-marker.active').eq(0).data('marker-type'),
             'canvasId': App.activeCanvas.id
         }));
     }

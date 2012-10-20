@@ -8,9 +8,9 @@
           <div class="controls">
               <input type="text" id="marker-name" placeholder="Name">
               <select id="marker-type" name="marker-type">
-                  <option selected="selected">Text</option>
-                  <option>Image</option>
-                  <option>Video</option>
+                  <option <% if(obj.type == 'text') print('selected="selected"') %>>Text</option>
+                  <option <% if(obj.type == 'image') print('selected="selected"') %>>Image</option>
+                  <option <% if(obj.type == 'video') print('selected="selected"') %>>Video</option>
               </select>
               <textarea rows="3" placeholder="Content"></textarea>
           </div>

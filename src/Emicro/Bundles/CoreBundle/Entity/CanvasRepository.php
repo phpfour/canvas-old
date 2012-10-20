@@ -71,7 +71,7 @@ class CanvasRepository extends EntityRepository
             $canvas = new Canvas();
         }
 
-        $fields = array('title', 'image', 'markers', 'details');
+        $fields = array('title', 'image', 'markers', 'details', 'canvasHeight', 'canvasWidth');
 
         foreach ($fields as $field) {
             if (isset($data[$field]) && !empty($data[$field])) {

@@ -108,17 +108,18 @@ body {
     padding: 5px 15px;
     box-shadow: 0 0 5px #666;
     background-color: #eec;
+    width: 220px;
 }
 
 /* App elements */
 #canvas {
-    background-color: #eeeeee;
-    height: 400px;
-    width: 700px;
+    background: #eeeeee no-repeat;
+    max-width: 700px;
     overflow: auto;
     position: relative;
     box-shadow: 0 0 5px #666;
     margin: 30px auto 20px;
+    cursor: crosshair;
 }
 .main-toolbar {
     border-bottom: 1px dashed gray;
@@ -131,4 +132,8 @@ body {
     font-weight: bold;
     color: #a0522d;
     margin: 10px 20px 10px 0 !important;
+}
+
+.canvas-thumb div {
+    height: 120px;
 }
