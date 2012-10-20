@@ -7,7 +7,8 @@ var CanvasView = Backbone.View.extend({
     },
 
     render: function() {
-        $(this.el).html(_.template(Templates.Canvas, this.model.toJSON()));
+        var json =  _.extend(this.model.toJSON(), {markersHtml: this.getMarkersHtml()});
+        $(this.el).html(_.template(Templates.Canvas, json));
         return this;
     },
 
@@ -43,6 +44,15 @@ var CanvasView = Backbone.View.extend({
             'type': $('.create-marker.active').eq(0).data('marker-type'),
             'canvasId': App.activeCanvas.id
         }));
+    },
+
+    getMarkersHtml: function() {
+        var output = '';
+        this.model.get('markers').each(function(marker) {
+            output += _.template(Templates.Marker, marker.toJSON());
+        });
+
+        return output;
     }
 
 });

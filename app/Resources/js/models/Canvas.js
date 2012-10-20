@@ -14,6 +14,8 @@ var Canvas = Backbone.Model.extend({
 
     sync: function(method, model, options) {
         if (method === "update") method = "create";    // turns PUT into POST
+        if(method = "create") { this.url = this.urlRoot()  }
+
         return Backbone.sync(method, model, options);
     }
 

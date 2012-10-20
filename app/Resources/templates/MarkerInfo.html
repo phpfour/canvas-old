@@ -6,13 +6,13 @@
     <form>
       <div class="control-group">
           <div class="controls">
-              <input type="text" id="marker-name" placeholder="Name">
+              <input type="text" id="marker-name" placeholder="Name" value="<%= name %>">
               <select id="marker-type" name="marker-type">
                   <option <% if(obj.type == 'text') print('selected="selected"') %>>Text</option>
                   <option <% if(obj.type == 'image') print('selected="selected"') %>>Image</option>
                   <option <% if(obj.type == 'video') print('selected="selected"') %>>Video</option>
               </select>
-              <textarea rows="3" placeholder="Content" id="marker-content"></textarea>
+              <textarea rows="3" placeholder="Content" id="marker-content"><%= content %></textarea>
           </div>
       </div>
       <div class="control-group">
