@@ -22,6 +22,11 @@ class CanvasController extends Controller
         }
 
         $data = $this->getRequest()->request->all();
+
+        if (empty($data)) {
+            $data = json_decode($this->getRequest()->getContent(), true);
+        }
+
         $this->handleUpload($data);
 
         $userRepo = $this->getDoctrine()->getRepository('Emicro\Bundles\CoreBundle\Entity\User');

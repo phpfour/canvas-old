@@ -56,10 +56,10 @@ class User
     /** @ORM\Column(type="datetime", nullable=true) */
     protected $passwordRequestedAt;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column(type="datetime", nullable=true) */
     protected $createDate;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column(type="datetime", nullable=true) */
     protected $updateDate;
 
     /** @ORM\OneToMany(targetEntity="Project", mappedBy="user") **/
