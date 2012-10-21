@@ -28,7 +28,6 @@ project_create:
   requirements:
     _method: POST
 
-
 canvas_create:
   pattern:  /canvases
   defaults: { _controller: EmicroCoreBundle:Canvas:create }

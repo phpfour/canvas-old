@@ -22,7 +22,7 @@ var CanvasView = Backbone.View.extend({
 
         var offset = $(e.target).position();
 
-        var x = e.pageX - (offset.left + 20); // 40 = 30 for adjustment + 10 for to make center
+        var x = e.pageX - (offset.left + 10); // 40 = 30 for adjustment + 10 for to make center
         var y = e.pageY - (offset.top + 40);
 
         App.log(offset);

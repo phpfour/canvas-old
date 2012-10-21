@@ -75,7 +75,7 @@ class CanvasController extends Controller
         $imageResizer->maxWidth(700)->resize();
 
         $imageResizer = new ImageResizer($thumbFile);
-        $imageResizer->maxWidth(160)->resize();
+        $imageResizer->maxWidth(150)->maxHeight(100)->resize();
 
         $canvasDimensions = getimagesize($canvasFile);
 
