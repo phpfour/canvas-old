@@ -1,0 +1,26 @@
+{% extends '::embed.html.twig' %}
+
+{% block content %}
+<div style="background-image: url({{ url('homepage') }}uploads/canvas_{{ canvas.image }}); width: {{ canvas.canvasWidth }}px; height: {{ canvas.canvasHeight }}px;">
+
+    {% for marker in canvas.markers %}
+
+        <div data-toggle="modal" href="#details-{{ marker.id }}" class="marker marker1" id="{{ marker.id }}" style="top: {{ marker.y }}px; left: {{ marker.x }}px;"></div>
+
+        <div class="modal hide fade" role="dialog" id="details-{{ marker.id }}">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">{{ marker.name }}</h3>
+            </div>
+            <div class="modal-body" style="margin: 0 auto;">
+                {{ marker.details|raw }}
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}

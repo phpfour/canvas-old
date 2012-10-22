@@ -10,6 +10,18 @@ use Emicro\Bundles\CoreBundle\Service\ImageResizer\ImageResizer;
 
 class CanvasController extends Controller
 {
+    public function embedAction()
+    {
+        $id = $this->getRequest()->get('id');
+
+        $canvasRepo = $this->getDoctrine()->getRepository('Emicro\Bundles\CoreBundle\Entity\Canvas');
+        $canvas = $canvasRepo->find($id);
+
+        return $this->render('EmicroCoreBundle:Canvas:embed.html.twig', array(
+            'canvas' => $canvas
+        ));
+    }
+
     public function createAction()
     {
         $response = new Response();

@@ -21,11 +21,15 @@ var AppRouter = Backbone.Router.extend({
     },
 
     home: function() {
+
         App.hideSidebar();
         App.canvasList.render();
+
+        $('#embed-container').hide();
     },
 
     showCanvas: function(canvasId) {
+
         App.activeCanvas = App.orphanCanvasList.get(canvasId);
         new CanvasView({model: App.activeCanvas});
 
@@ -34,6 +38,9 @@ var AppRouter = Backbone.Router.extend({
         if (App.editingMarkerView) {
             App.editingMarkerView.close();
         }
+
+        $('#canvas-embed').html('<iframe src="' + App.baseUrl + 'canvases/' + canvasId + '" height="' + App.activeCanvas.get('canvasHeight') + '" width="' + App.activeCanvas.get('canvasWidth') + '" frameborder="0"></iframe>');
+        $('#embed-container').show();
     },
 
     logOut: function() {

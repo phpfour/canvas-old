@@ -33,3 +33,7 @@ canvas_create:
   defaults: { _controller: EmicroCoreBundle:Canvas:create }
   requirements:
     _method: POST
+
+canvas_embed:
+  pattern:  /canvases/{id}
+  defaults: { _controller: EmicroCoreBundle:Canvas:embed }

@@ -5,6 +5,11 @@ body {
     overflow-y: auto;
 }
 
+body.embed {
+    padding: 0;
+    background: none;
+}
+
 .left {
     float: left;
 }
