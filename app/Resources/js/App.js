@@ -67,6 +67,8 @@ App.bindGlobalEvents = function() {
             App.formData.append('project_id', App.currentProject.id);
         }
 
+        $('#canvas-progress').html("Uploading canvas...");
+
         $.ajax({
             url: "/canvases",
             type: "POST",
