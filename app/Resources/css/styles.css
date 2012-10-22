@@ -84,6 +84,10 @@ body {
     height:11px;
 }
 
+.marker-icon {
+    opacity: 0.5;
+}
+
 /* Layout and Boxes */
 #content .row-fluid, #content .sidebar, #main{
     height: 100%;
@@ -108,7 +112,7 @@ body {
     padding: 5px 15px;
     box-shadow: 0 0 5px #666;
     background-color: #eec;
-    width: 220px;
+    width: 86%;
 }
 
 /* App elements */

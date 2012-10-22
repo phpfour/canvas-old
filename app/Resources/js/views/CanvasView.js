@@ -17,6 +17,7 @@ var CanvasView = Backbone.View.extend({
     },
 
     addMarker: function(e) {
+
         //If clicked on existing marker, return
         if($(e.target).attr('id') != 'canvas') return;
 
@@ -29,14 +30,14 @@ var CanvasView = Backbone.View.extend({
         App.log(e.pageX +', '+ e.pageY);
 
         var newMarker = document.createElement('div');
-        var id = 'clickover-'+ x +'-'+ y;
+        var id = 'marker-'+ x +'-'+ y;
 
         $(newMarker).addClass('marker marker1')
                     .attr('id', id)
-                    .attr('rel', 'clickover')
                     .css({top: y + 'px', left: x + 'px'});
 
         $(e.target).append(newMarker);
+
         App.activeCanvas.get('markers').add(new Marker({
             'id': id,
             'x': x,
@@ -44,10 +45,21 @@ var CanvasView = Backbone.View.extend({
             'type': $('.create-marker.active').eq(0).data('marker-type'),
             'canvasId': App.activeCanvas.id
         }));
+
+        $(newMarker).click();
+
+        App.activeCanvas.save({}, {
+            success: function(model, response) {
+                model.initiateMarkerCollection();
+            }
+        });
+
     },
 
     getMarkersHtml: function() {
+
         var output = '';
+
         this.model.get('markers').each(function(marker) {
             output += _.template(Templates.Marker, marker.toJSON());
         });

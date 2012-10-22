@@ -13,6 +13,7 @@ var App = {
 
         this.appRouter = new AppRouter();
         Backbone.history.start();
+
     },
 
     addProject: function() {
@@ -44,12 +45,13 @@ App.bindGlobalEvents = function() {
         App.addCanvas();
     });
 
-    $('.marker').live('click', function(e){
+    $('.marker').live('click', function(e) {
         if(App.editingMarker != null){
             App.editingMarkerView.close();
         }
 
         var modelId = $(e.target).attr('id');
+        App.log(App.activeCanvas.get('markers'));
         App.editingMarker = App.activeCanvas.get('markers').get(modelId);
         App.editingMarkerView = new MarkerView({model:App.editingMarker});
         $('#'+modelId).addClass('marker3');
@@ -96,7 +98,9 @@ App.bindGlobalEvents = function() {
 }
 
 App.showSidebar = function(canvas){
-App.log(canvas);
+
+    App.log(canvas);
+
     $('#canvas-info').find('h4').text(canvas.get('title')).end()
                      .find('p').text(canvas.get('details'));
 
@@ -107,7 +111,6 @@ App.log(canvas);
 App.hideSidebar = function(){
     $('#main').animate({width: '65%'}, {complete: function(){$('#sidebar-right').hide();}});
 }
-
 
 App.log = function(objectToLog) {
     if(typeof console != 'undefined' && typeof console.log == 'function') {

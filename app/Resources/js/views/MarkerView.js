@@ -19,12 +19,24 @@ var MarkerView = Backbone.View.extend({
     },
 
     updateMarker: function(e) {
+
         App.editingMarker.set({
-            'name': $('#marker-name').val(),
-            'type': $('#marker-type').val(),
-            'content': $('#marker-content').val()
+            'x'       :$('#marker-x').val(),
+            'y'       :$('#marker-y').val(),
+            'name'    :$('#marker-name').val(),
+            'type'    :$('#marker-type').val(),
+            'content' :$('#marker-content').val(),
+            'canvasId':$('#marker-canvasId').val()
         });
-        App.activeCanvas.save();
+
+        $('#marker-progress').html(' Saving marker...');
+
+        App.activeCanvas.save({}, {
+            success: function(model, response) {
+                model.initiateMarkerCollection();
+                $('#marker-progress').html(' Marker saved.');
+            }
+        });
     },
 
     deleteMarker: function(e) {

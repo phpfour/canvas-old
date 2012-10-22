@@ -1,8 +1,9 @@
 var Marker = Backbone.Model.extend({
 
     idAttribute: "id",
+
     defaults: {
-        "type"   :  "text"
+        "type" : "text"
     },
 
     urlRoot: function(){
