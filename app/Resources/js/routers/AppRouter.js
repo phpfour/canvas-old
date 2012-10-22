@@ -30,6 +30,10 @@ var AppRouter = Backbone.Router.extend({
         new CanvasView({model: App.activeCanvas});
 
         App.showSidebar(App.activeCanvas);
+
+        if (App.editingMarkerView) {
+            App.editingMarkerView.close();
+        }
     },
 
     logOut: function() {

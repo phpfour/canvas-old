@@ -16,13 +16,13 @@
 
                 <% if (type == 'text') { %>
                     <label>Text:</label>
-                    <textarea rows="5" placeholder="Enter text (basic HTML allowed)" id="marker-content" style="width: 96%;"><%= content %></textarea>
+                    <textarea rows="5" placeholder="Enter text (basic HTML allowed)" id="marker-content" style="width: 96%;"><%= details %></textarea>
                 <% } else if (type == 'video') { %>
                     <label>Video Embed Code:</label>
-                    <textarea rows="5" placeholder="Enter embed code from youtube/vimeo" id="marker-content" style="width: 96%;"><%= content %></textarea>
+                    <textarea rows="5" placeholder="Enter embed code from youtube/vimeo" id="marker-content" style="width: 96%;"><%= details %></textarea>
                 <% } else if (type == 'image') { %>
                     <label>Image URL:</label>
-                    <textarea rows="5" placeholder="Enter image URL" id="marker-content" style="width: 96%;"><%= content %></textarea>
+                    <textarea rows="5" placeholder="Enter image URL" id="marker-content" style="width: 96%;"><%= details %></textarea>
                 <% } %>
 
                 <label>Icon:</label>

@@ -46,16 +46,19 @@ App.bindGlobalEvents = function() {
     });
 
     $('.marker').live('click', function(e) {
+
         if(App.editingMarker != null){
             App.editingMarkerView.close();
         }
 
         var modelId = $(e.target).attr('id');
-        App.log(App.activeCanvas.get('markers'));
+        App.log('Loading marker: ' + modelId);
+
         App.editingMarker = App.activeCanvas.get('markers').get(modelId);
         App.editingMarkerView = new MarkerView({model:App.editingMarker});
-        $('#'+modelId).addClass('marker3');
-        //App.activeCanvas.get('markers').add(App.editingMarker);
+
+        $('#' + modelId).addClass('marker3');
+
     });
 
     $("#addCanvas").find('.btn-primary').click(function(){

@@ -20,14 +20,18 @@ var MarkerView = Backbone.View.extend({
 
     updateMarker: function(e) {
 
-        App.editingMarker.set({
-            'x'       :$('#marker-x').val(),
-            'y'       :$('#marker-y').val(),
-            'name'    :$('#marker-name').val(),
-            'type'    :$('#marker-type').val(),
-            'content' :$('#marker-content').val(),
-            'canvasId':$('#marker-canvasId').val()
+        var modelId = this.model.id;
+
+        App.editingMarker = App.activeCanvas.get('markers').get(modelId).set({
+            'x'       : $('#marker-x').val(),
+            'y'       : $('#marker-y').val(),
+            'name'    : $('#marker-name').val(),
+            'type'    : $('#marker-type').val(),
+            'details' : $('#marker-content').val(),
+            'canvasId': $('#marker-canvasId').val()
         });
+
+        App.log(App.editingMarker);
 
         $('#marker-progress').html(' Saving marker...');
 

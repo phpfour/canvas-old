@@ -15,7 +15,7 @@ var CanvasListView = Backbone.View.extend({
         var canvasListItems = '';
         this.collection.each(function(canvas) {
             canvasListItems += '<li  class="span3 canvas-thumb"><div><a href="#canvas/'+ canvas.id +'" class="thumbnail">'
-            canvasListItems += '<img src="'+ App.baseUrl + App.IMG_ROOT + canvas.get('image') +'" alt="" /></a></div>';
+            canvasListItems += '<img src="'+ App.baseUrl + App.IMG_ROOT + 'thumb_' + canvas.get('image') +'" alt="" /></a></div>';
             canvasListItems += '<span>' + canvas.get('title') +'</span></li>'
         });
 

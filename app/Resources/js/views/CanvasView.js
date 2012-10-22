@@ -19,15 +19,14 @@ var CanvasView = Backbone.View.extend({
     addMarker: function(e) {
 
         //If clicked on existing marker, return
-        if($(e.target).attr('id') != 'canvas') return;
+        if ($(e.target).attr('id') != 'canvas') {
+            return;
+        }
 
         var offset = $(e.target).position();
 
-        var x = e.pageX - (offset.left + 10); // 40 = 30 for adjustment + 10 for to make center
-        var y = e.pageY - (offset.top + 40);
-
-        App.log(offset);
-        App.log(e.pageX +', '+ e.pageY);
+        var x = Math.round(e.pageX - (offset.left + 10)); // 40 = 30 for adjustment + 10 for to make center
+        var y = Math.round(e.pageY - (offset.top + 40));
 
         var newMarker = document.createElement('div');
         var id = 'marker-'+ x +'-'+ y;
@@ -39,10 +38,12 @@ var CanvasView = Backbone.View.extend({
         $(e.target).append(newMarker);
 
         App.activeCanvas.get('markers').add(new Marker({
-            'id': id,
-            'x': x,
-            'y': y,
-            'type': $('.create-marker.active').eq(0).data('marker-type'),
+            'x'       : x,
+            'y'       : y,
+            'id'      : id,
+            'type'    : $('.create-marker.active').eq(0).data('marker-type'),
+            'name'    : 'Marker ' + (App.activeCanvas.get('markers').length + 1),
+            'details' : '',
             'canvasId': App.activeCanvas.id
         }));
 

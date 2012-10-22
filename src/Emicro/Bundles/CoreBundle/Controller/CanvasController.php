@@ -72,7 +72,7 @@ class CanvasController extends Controller
         copy($originalFile, $thumbFile);
 
         $imageResizer = new ImageResizer($canvasFile);
-        $imageResizer->maxWidth(700)->resize();
+        $imageResizer->maxWidth(770)->resize();
 
         $imageResizer = new ImageResizer($thumbFile);
         $imageResizer->maxWidth(150)->maxHeight(100)->resize();
